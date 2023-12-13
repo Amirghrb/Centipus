@@ -1,19 +1,19 @@
 package state
 
-type workflow struct {
-	id          int
-	name        string
-	description string
-	works       []work
-	created_at  string
-	updated_at  string
+type Workflow struct {
+	Id          int
+	Name        string
+	Description string
+	Works       []Work
+	Created_at  string
+	Updated_at  string
 }
 
-type work struct {
-	id      int
-	script  script
-	server  server
-	rel     int
-	inputs  map[string]string
-	outputs map[string]string
+type Work struct {
+	Id      int
+	Script  Script
+	Server  Server
+	Rel     int
+	Inputs  map[string]string
+	Outputs map[string]string
 }

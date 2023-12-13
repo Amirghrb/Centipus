@@ -1,8 +1,8 @@
 package state
 
-type script struct {
-	name       string
-	path       string
-	created_at string
-	updated_at string
+type Script struct {
+	Name       string
+	Path       string
+	Created_at string
+	Updated_at string
 }
