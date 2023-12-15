@@ -62,9 +62,9 @@ func saveState(f *os.File, s Store) error {
 }
 
 func Save(state Store) error {
-	dist := fmt.Sprintf("./%d_%v_state.json", lstId, time.UTC)
+	dist := "state.json"
 
-	if _, err := os.Stat(fmt.Sprintf(dist, lstId, time.UTC)); errors.Is(err, os.ErrNotExist) {
+	if _, err := os.Stat(dist); errors.Is(err, os.ErrNotExist) {
 		File, err := os.Create(dist)
 		if err != nil {
 			return err
@@ -83,8 +83,19 @@ func Save(state Store) error {
 	return nil
 }
 
-//TODO: load previous state of program
-
-func Load() {
-
+// TODO: load previous state of program
+func Load() (Store, error) {
+	dist := "state.json"
+	f, err := os.Open(dist)
+	if err != nil {
+		return Store{}, err
+	}
+	var cont []byte
+	f.Read(cont)
+	if err != nil {
+		return Store{}, err
+	}
+	var content Store
+	json.Unmarshal(cont, &content)
+	return content, nil
 }
