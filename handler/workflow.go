@@ -5,17 +5,27 @@ import (
 )
 
 type WorkflowHandler struct {
-	store *state.Store
+	State state.St
 	// Workflow state.Workflow
 }
 
 func (wh *WorkflowHandler) Add(wf state.Workflow) int {
-	wh.store.Workflow = append(wh.store.Workflow, wf)
+	lastState := state.CloneStore((*wh.State)[state.GetLstId()])
+	lastState.Workflow = append(lastState.Workflow, wf)
+	state.Mutate(wh.State, lastState)
 	return 1
 }
 
-// func (w *WorkflowHandler) update(s state.State) state.Workflow {}
+// func (w *WorkflowHandler) update(id int) int{
 
-// func (w *WorkflowHandler) delete(s state.State) state.Workflow {}
+// }
 
-// func (w *WorkflowHandler) get(s state.State) state.Workflow {}
+// func (w *WorkflowHandler) delete(s ) state.Workflow {}
+
+// func (w *WorkflowHandler) Get(id int) state.Workflow {
+// 	return w.store.Workflow[id]
+// }
+
+// func (w *WorkflowHandler) GetAll() []state.Workflow {
+// 	return w.store.Workflow
+// }
