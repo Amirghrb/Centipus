@@ -1,2 +1,7 @@
-# octopus
-shh gateway and script runner
+# Centipus
+
+
+## One SHH gateway and script runner 
+
+my first Data oriented Project
+
